@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Common">
+      <UniqueIdentifier>1a70df07-61ce-4f6f-8e8d-13330ab3d2c7</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>14b6bcc4-af7c-41eb-a6b2-64b0cd8206cc</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dds;dlg;fbx;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tga;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="fmt">
+      <UniqueIdentifier>{b4fa3eb2-94c6-4bc1-95c5-655ac0ef8e8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utils">
+      <UniqueIdentifier>{8349f6f9-5a06-47ac-87db-ce9e377dad34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="json11">
+      <UniqueIdentifier>{cc3f516a-ec99-4c48-8321-217f6a333807}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="StepTimer.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="DeviceResources.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="App.h" />
+    <ClInclude Include="AppContext.h" />
+    <ClInclude Include="AppResources.h" />
+    <ClInclude Include="DebugDraw.h" />
+    <ClInclude Include="UIDebugDraw.h" />
+    <ClInclude Include="fmt\format.h">
+      <Filter>fmt</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\KeyboardInputString.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\Log.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="json11\json11.hpp">
+      <Filter>json11</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="DeviceResources.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="App.cpp" />
+    <ClCompile Include="AppResources.cpp" />
+    <ClCompile Include="DebugDraw.cpp" />
+    <ClCompile Include="UIDebugDraw.cpp" />
+    <ClCompile Include="fmt\format.cc">
+      <Filter>fmt</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\KeyboardInputString.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\Log.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="json11\json11.cpp">
+      <Filter>json11</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="directx.ico">
+      <Filter>Assets</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="settings.manifest">
+      <Filter>Assets</Filter>
+    </Manifest>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
