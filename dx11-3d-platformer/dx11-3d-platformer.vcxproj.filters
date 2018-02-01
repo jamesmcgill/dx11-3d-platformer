@@ -57,6 +57,7 @@
     </ClInclude>
     <ClInclude Include="GameLogic.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -90,10 +91,10 @@
     <ClCompile Include="Entity.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="resource.rc" />
-  </ItemGroup>
-  <ItemGroup>
     <Image Include="directx.ico">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="pac.ico">
       <Filter>Assets</Filter>
     </Image>
   </ItemGroup>
@@ -104,5 +105,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="resource.rc" />
   </ItemGroup>
 </Project>
