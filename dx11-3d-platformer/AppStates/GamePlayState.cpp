@@ -26,6 +26,8 @@ constexpr size_t PLAYER_MIN_VELOCITY_CONTROL = 20;
 void
 GamePlayState::handleInput(const DX::StepTimer& timer)
 {
+	UNREFERENCED_PARAMETER(timer);
+
 	TRACE
 	float elapsedTimeS = static_cast<float>(timer.GetElapsedSeconds());
 
@@ -35,24 +37,13 @@ GamePlayState::handleInput(const DX::StepTimer& timer)
 
 	if (kb.IsKeyPressed(Keyboard::Escape))
 	{
-		m_states.changeState(&m_states.paused);
+		//m_states.changeState(&m_states.paused);
 	}
 
 	// Debug options
-	if (kb.IsKeyPressed(Keyboard::E))
-	{
-		auto pos = m_context.entities[PLAYERS_IDX].position
-							 + m_context.entities[PLAYERS_IDX].model->bound.Center;
-		m_resources.explosions->emit(pos, DirectX::SimpleMath::Vector3());
-	}
-
 	if (kb.IsKeyPressed(Keyboard::F2))
 	{
 		m_context.debugDraw = !m_context.debugDraw;
-	}
-	if (kb.IsKeyPressed(Keyboard::F3))
-	{
-		m_states.changeState(&m_states.editing);
 	}
 
 	const auto& midiMask	= m_resources.midiTracker.dirtyMask;
@@ -149,26 +140,15 @@ GamePlayState::handleInput(const DX::StepTimer& timer)
 	{
 		m_context.playerAccel *= UNIT_DIAGONAL_LENGTH;
 	}
-
-	if (
-		kb.IsKeyPressed(Keyboard::LeftControl)
-		|| kb.IsKeyPressed(Keyboard::Space))
-	{
-		m_gameLogic.m_enemies.emitPlayerShot();
-	}
 }
 
 //------------------------------------------------------------------------------
 void
 GamePlayState::update(const DX::StepTimer& timer)
 {
+	UNREFERENCED_PARAMETER(timer);
+
 	TRACE
-	m_resources.starField->update(timer);
-	m_resources.explosions->update(timer);
-	if (GameLogic::GameStatus::GameOver == m_gameLogic.update(timer))
-	{
-		m_states.changeState(&m_states.gameOver);
-	}
 }
 
 //------------------------------------------------------------------------------
@@ -176,21 +156,7 @@ void
 GamePlayState::render()
 {
 	TRACE
-	renderStarField();
-
 	m_gameLogic.render();
-}
-
-//------------------------------------------------------------------------------
-void
-GamePlayState::renderStarField()
-{
-	TRACE
-	auto& spriteBatch = m_resources.m_spriteBatch;
-
-	spriteBatch->Begin();
-	m_resources.starField->render(*spriteBatch);
-	spriteBatch->End();
 }
 
 //------------------------------------------------------------------------------
@@ -219,10 +185,6 @@ void
 GamePlayState::enter()
 {
 	TRACE
-	if (m_states.previousState() != &m_states.paused)
-	{
-		m_gameLogic.reset();
-	}
 }
 
 //------------------------------------------------------------------------------

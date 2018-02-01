@@ -4,14 +4,8 @@
 //------------------------------------------------------------------------------
 AppStates::AppStates(
 	AppContext& context, AppResources& resources, GameLogic& logic)
-		: menu(*this, context, resources, logic)
-		, getReady(*this, context, resources, logic)
-		, playing(*this, context, resources, logic)
-		, gameOver(*this, context, resources, logic)
-		, paused(*this, context, resources, logic)
-		, showingScores(*this, context, resources, logic)
-		, enteringScore(*this, context, resources, logic)
-		, m_currentState(&menu)
+		: playing(*this, context, resources, logic)
+		, m_currentState(&playing)
 {
 }
 

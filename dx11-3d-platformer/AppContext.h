@@ -1,6 +1,6 @@
 #pragma once
 #include "pch.h"
-//#include "Entity.h"
+#include "Entity.h"
 #include "UIDebugDraw.h"
 
 //------------------------------------------------------------------------------
@@ -45,10 +45,7 @@ struct AppContext
 	float cameraRotationY = 0.0f;
 	float cameraDistance	= defaultCameraDistance;
 
-	//size_t nextPlayerShotIdx = PLAYER_SHOTS_IDX;
-	//size_t nextEnemyShotIdx	= ENEMY_SHOTS_IDX;
-	//size_t nextEnemyIdx			 = ENEMIES_IDX;
-	//Entity entities[NUM_ENTITIES];
+	Entity entities[NUM_ENTITIES];
 
 	DirectX::SimpleMath::Vector3 playerAccel = {};
 	int playerScore													 = 0;

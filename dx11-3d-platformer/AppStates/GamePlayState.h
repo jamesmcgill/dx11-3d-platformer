@@ -27,7 +27,7 @@ public:
 	void exit() override;
 
 private:
-	void renderStarField();
+
 };
 
 //------------------------------------------------------------------------------

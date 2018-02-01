@@ -14,8 +14,8 @@ static const std::wstring AUDIO_PATH = L"assets/audio/";
 
 //------------------------------------------------------------------------------
 App::App()
-		//: m_gameLogic(m_context, m_resources)
-		//, m_appStates(m_context, m_resources, m_gameLogic)
+		: m_gameLogic(m_context, m_resources)
+		, m_appStates(m_context, m_resources, m_gameLogic)
 {
 	TRACE
 	m_resources.m_deviceResources = std::make_unique<DX::DeviceResources>();
@@ -87,7 +87,7 @@ App::initialize(HWND window, int width, int height)
 	m_timer.SetTargetElapsedSeconds(1.0 / 60);
 	*/
 
-	//m_appStates.changeState(&m_appStates.menu);
+	m_appStates.changeState(&m_appStates.playing);
 }
 
 #pragma region Frame Update
@@ -153,9 +153,9 @@ App::update()
 	}
 	m_resources.audioEngine->Update();
 
-	//const auto& currentState = m_appStates.currentState();
-	//currentState->handleInput(m_resources.m_timer);
-	//currentState->update(m_resources.m_timer);
+	const auto& currentState = m_appStates.currentState();
+	currentState->handleInput(m_resources.m_timer);
+	currentState->update(m_resources.m_timer);
 }
 
 //------------------------------------------------------------------------------
@@ -179,7 +179,7 @@ App::render()
 	clear();
 
 	m_resources.m_deviceResources->PIXBeginEvent(L"Render");
-	//m_appStates.currentState()->render();
+	m_appStates.currentState()->render();
 	m_resources.m_deviceResources->PIXEndEvent();
 }
 

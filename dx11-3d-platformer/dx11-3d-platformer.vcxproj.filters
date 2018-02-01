@@ -17,6 +17,9 @@
     <Filter Include="json11">
       <UniqueIdentifier>{cc3f516a-ec99-4c48-8321-217f6a333807}</UniqueIdentifier>
     </Filter>
+    <Filter Include="AppStates">
+      <UniqueIdentifier>{fa6d85f2-038b-455e-a885-66242040fb14}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -43,6 +46,17 @@
     <ClInclude Include="json11\json11.hpp">
       <Filter>json11</Filter>
     </ClInclude>
+    <ClInclude Include="AppStates\AppStates.h">
+      <Filter>AppStates</Filter>
+    </ClInclude>
+    <ClInclude Include="AppStates\IAppState.h">
+      <Filter>AppStates</Filter>
+    </ClInclude>
+    <ClInclude Include="AppStates\GamePlayState.h">
+      <Filter>AppStates</Filter>
+    </ClInclude>
+    <ClInclude Include="GameLogic.h" />
+    <ClInclude Include="Entity.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -66,6 +80,14 @@
     <ClCompile Include="json11\json11.cpp">
       <Filter>json11</Filter>
     </ClCompile>
+    <ClCompile Include="AppStates\AppStates.cpp">
+      <Filter>AppStates</Filter>
+    </ClCompile>
+    <ClCompile Include="AppStates\GamePlayState.cpp">
+      <Filter>AppStates</Filter>
+    </ClCompile>
+    <ClCompile Include="GameLogic.cpp" />
+    <ClCompile Include="Entity.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc" />

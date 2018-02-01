@@ -2,8 +2,8 @@
 #include "pch.h"
 #include "AppContext.h"
 #include "AppResources.h"
-//#include "GameLogic.h"
-//#include "AppStates/AppStates.h"
+#include "GameLogic.h"
+#include "AppStates/AppStates.h"
 
 namespace logger
 {
@@ -54,8 +54,8 @@ private:
 
 	AppContext m_context;
 	AppResources m_resources;
-	//GameLogic m_gameLogic;
-	//AppStates m_appStates;
+	GameLogic m_gameLogic;
+	AppStates m_appStates;
 
 	const logger::TimedRecord* overriddenFlameHead = nullptr;
 };

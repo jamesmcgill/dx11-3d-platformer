@@ -159,10 +159,15 @@
   <ItemGroup>
     <ClInclude Include="AppContext.h" />
     <ClInclude Include="AppResources.h" />
+    <ClInclude Include="AppStates\AppStates.h" />
+    <ClInclude Include="AppStates\GamePlayState.h" />
+    <ClInclude Include="AppStates\IAppState.h" />
     <ClInclude Include="DebugDraw.h" />
     <ClInclude Include="DeviceResources.h" />
     <ClInclude Include="App.h" />
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="fmt\format.h" />
+    <ClInclude Include="GameLogic.h" />
     <ClInclude Include="json11\json11.hpp" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="StepTimer.h" />
@@ -172,10 +177,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AppResources.cpp" />
+    <ClCompile Include="AppStates\AppStates.cpp" />
+    <ClCompile Include="AppStates\GamePlayState.cpp" />
     <ClCompile Include="DebugDraw.cpp" />
     <ClCompile Include="DeviceResources.cpp" />
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="fmt\format.cc" />
+    <ClCompile Include="GameLogic.cpp" />
     <ClCompile Include="json11\json11.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="pch.cpp">
