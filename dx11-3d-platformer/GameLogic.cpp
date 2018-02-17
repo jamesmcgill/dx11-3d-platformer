@@ -12,217 +12,217 @@ using namespace DirectX::SimpleMath;
 
 //------------------------------------------------------------------------------
 GameLogic::GameLogic(AppContext& context, AppResources& resources)
-		: m_context(context)
-		, m_resources(resources)
+    : m_context(context)
+    , m_resources(resources)
 {
-	TRACE
+  TRACE
 }
 
 //------------------------------------------------------------------------------
 void
 GameLogic::reset()
 {
-	TRACE
-	m_context.resetPlayer();
-	m_context.resetCamera();
+  TRACE
+  m_context.resetPlayer();
+  m_context.resetCamera();
 
-	m_hudDirty = true;
+  m_hudDirty = true;
 
-	m_context.updateViewMatrix();
+  m_context.updateViewMatrix();
 }
 
 //------------------------------------------------------------------------------
 GameLogic::GameStatus
 GameLogic::update(const DX::StepTimer& timer)
 {
-	UNREFERENCED_PARAMETER(timer);
+  UNREFERENCED_PARAMETER(timer);
 
-	TRACE
-	//float elapsedTimeS = float(timer.GetElapsedSeconds());
+  TRACE
+  // float elapsedTimeS = float(timer.GetElapsedSeconds());
 
-	performPhysicsUpdate(timer);
-	performCollisionTests();
+  performPhysicsUpdate(timer);
+  performCollisionTests();
 
-	return GameStatus::Playing;
+  return GameStatus::Playing;
 }
 
 //------------------------------------------------------------------------------
 void
 GameLogic::render()
 {
-	TRACE
-	renderEntityModels();
+  TRACE
+  renderEntityModels();
 
-	//auto& states			= *m_resources.m_states;
+  // auto& states			= *m_resources.m_states;
 
-	//auto& spriteBatch = m_resources.m_spriteBatch;
-	//spriteBatch->Begin(SpriteSortMode_Deferred, states.Additive());
-	//spriteBatch->End();
+  // auto& spriteBatch = m_resources.m_spriteBatch;
+  // spriteBatch->Begin(SpriteSortMode_Deferred, states.Additive());
+  // spriteBatch->End();
 
-	DX::DrawContext drawContext(m_context, m_resources);
-	drawContext.begin(DX::DrawContext::Projection::Screen);
-	drawHUD();
-	drawContext.end();
+  DX::DrawContext drawContext(m_context, m_resources);
+  drawContext.begin(DX::DrawContext::Projection::Screen);
+  drawHUD();
+  drawContext.end();
 
-	// Debug Drawing
-	if (m_context.debugDraw)
-	{
-		drawContext.begin();
-		renderEntitiesDebug();
+  // Debug Drawing
+  if (m_context.debugDraw)
+  {
+    drawContext.begin();
+    renderEntitiesDebug();
 
-		drawContext.setScreenProjection();
-		drawDebugVariables();
-		drawContext.end();
-	}
+    drawContext.setScreenProjection();
+    drawDebugVariables();
+    drawContext.end();
+  }
 }
 
 //------------------------------------------------------------------------------
 void
 GameLogic::renderEntityModels()
 {
-	TRACE
-	//size_t idx = 0;
-	//for (auto& entity : m_context.entities)
-	//{
-	//	if (PLAYERS_IDX == idx)
-	//	{
-	//		renderPlayerEntity(entity);
-	//	}
-	//	else if (entity.isAlive)
-	//	{
-	//		renderEntityModel(entity);
-	//	}
-	//	++idx;
-	//}
+  TRACE
+  // size_t idx = 0;
+  // for (auto& entity : m_context.entities)
+  //{
+  //	if (PLAYERS_IDX == idx)
+  //	{
+  //		renderPlayerEntity(entity);
+  //	}
+  //	else if (entity.isAlive)
+  //	{
+  //		renderEntityModel(entity);
+  //	}
+  //	++idx;
+  //}
 }
 
 //------------------------------------------------------------------------------
 void
 GameLogic::renderEntitiesDebug()
 {
-	TRACE
-	//for (auto& entity : m_context.entities)
-	//{
-	//	if (entity.isAlive)
-	//	{
-	//		renderEntityBound(entity);
-	//	}
-	//}
-	//m_enemies.debugRender(m_resources.m_batch.get());
-	//renderPlayerBoundary();
+  TRACE
+  // for (auto& entity : m_context.entities)
+  //{
+  //	if (entity.isAlive)
+  //	{
+  //		renderEntityBound(entity);
+  //	}
+  //}
+  // m_enemies.debugRender(m_resources.m_batch.get());
+  // renderPlayerBoundary();
 }
 
 //------------------------------------------------------------------------------
 void
 GameLogic::performPhysicsUpdate(const DX::StepTimer& timer)
 {
-	UNREFERENCED_PARAMETER(timer);
+  UNREFERENCED_PARAMETER(timer);
 
-	TRACE
-	//float elapsedTimeS = float(timer.GetElapsedSeconds());
+  TRACE
+  // float elapsedTimeS = float(timer.GetElapsedSeconds());
 
-	//// Player input forces
-	//auto& player = m_context.entities[PLAYERS_IDX];
-	//m_context.playerAccel *= m_context.playerSpeed;
+  //// Player input forces
+  // auto& player = m_context.entities[PLAYERS_IDX];
+  // m_context.playerAccel *= m_context.playerSpeed;
 
-	//Vector3 frictionNormal = -player.velocity;
-	//frictionNormal.Normalize();
-	//m_context.playerAccel += m_context.playerFriction * frictionNormal;
+  // Vector3 frictionNormal = -player.velocity;
+  // frictionNormal.Normalize();
+  // m_context.playerAccel += m_context.playerFriction * frictionNormal;
 
-	//// Ballistic entities
-	//for (size_t i = BALLISTIC_IDX; i < BALLISTIC_END; ++i)
-	//{
-	//	const bool isPlayer = (i < PLAYERS_END);
-	//	auto& e							= m_context.entities[i];
+  //// Ballistic entities
+  // for (size_t i = BALLISTIC_IDX; i < BALLISTIC_END; ++i)
+  //{
+  //	const bool isPlayer = (i < PLAYERS_END);
+  //	auto& e							= m_context.entities[i];
 
-	//	// Integrate Position
-	//	const Vector3& accel = (isPlayer) ? m_context.playerAccel : Vector3();
+  //	// Integrate Position
+  //	const Vector3& accel = (isPlayer) ? m_context.playerAccel : Vector3();
 
-	//	e.position = 0.5f * accel * (elapsedTimeS * elapsedTimeS)
-	//							 + e.velocity * elapsedTimeS + e.position;
-	//	e.velocity = accel * elapsedTimeS + e.velocity;
-	//}
+  //	e.position = 0.5f * accel * (elapsedTimeS * elapsedTimeS)
+  //							 + e.velocity * elapsedTimeS + e.position;
+  //	e.velocity = accel * elapsedTimeS + e.velocity;
+  //}
 }
 
 //------------------------------------------------------------------------------
 void
 GameLogic::performCollisionTests()
 {
-	TRACE
-	//for (size_t i = 0; i < NUM_ENTITIES; ++i)
-	//{
-	//	m_context.entities[i].isColliding = false;
-	//}
+  TRACE
+  // for (size_t i = 0; i < NUM_ENTITIES; ++i)
+  //{
+  //	m_context.entities[i].isColliding = false;
+  //}
 
-	//auto& player = m_context.entities[PLAYERS_IDX];
+  // auto& player = m_context.entities[PLAYERS_IDX];
 
-	//auto onPlayerShotHitsEnemy =
-	//	[	&score				= m_context.playerScore,
-	//		&explosions		= m_resources.explosions,
-	//		&soundEffects	= m_resources.soundEffects,
-	//	  &m_hudDirty		= this->m_hudDirty
-	//	](Entity& shot, Entity& testEntity)
-	//{
-	//	auto pos = shot.position + shot.model->bound.Center;
-	//	explosions->emit(pos, Vector3());
-	//	soundEffects[AudioResource::EnemyExplode]->Play();
+  // auto onPlayerShotHitsEnemy =
+  //	[	&score				= m_context.playerScore,
+  //		&explosions		= m_resources.explosions,
+  //		&soundEffects	= m_resources.soundEffects,
+  //	  &m_hudDirty		= this->m_hudDirty
+  //	](Entity& shot, Entity& testEntity)
+  //{
+  //	auto pos = shot.position + shot.model->bound.Center;
+  //	explosions->emit(pos, Vector3());
+  //	soundEffects[AudioResource::EnemyExplode]->Play();
 
-	//	shot.isColliding			 = true;
-	//	testEntity.isColliding = true;
-	//	shot.isAlive					 = false;
-	//	testEntity.isAlive		 = false;
-	//	score += POINTS_PER_KILL;
-	//	m_hudDirty = true;
-	//};
+  //	shot.isColliding			 = true;
+  //	testEntity.isColliding = true;
+  //	shot.isAlive					 = false;
+  //	testEntity.isAlive		 = false;
+  //	score += POINTS_PER_KILL;
+  //	m_hudDirty = true;
+  //};
 
-	//auto onPlayerHit =
-	//	[	&context			= m_context,
-	//		&explosions		= m_resources.explosions,
-	//		&soundEffects	= m_resources.soundEffects
-	//	](Entity & player, Entity & enemy)
-	//{
-	//	auto pos = player.position + player.model->bound.Center;
-	//	explosions->emit(pos, Vector3());
-	//	soundEffects[AudioResource::PlayerExplode]->Play();
+  // auto onPlayerHit =
+  //	[	&context			= m_context,
+  //		&explosions		= m_resources.explosions,
+  //		&soundEffects	= m_resources.soundEffects
+  //	](Entity & player, Entity & enemy)
+  //{
+  //	auto pos = player.position + player.model->bound.Center;
+  //	explosions->emit(pos, Vector3());
+  //	soundEffects[AudioResource::PlayerExplode]->Play();
 
-	//	pos = enemy.position + enemy.model->bound.Center;
-	//	explosions->emit(pos, Vector3());
-	//	soundEffects[AudioResource::EnemyExplode]->Play();
+  //	pos = enemy.position + enemy.model->bound.Center;
+  //	explosions->emit(pos, Vector3());
+  //	soundEffects[AudioResource::EnemyExplode]->Play();
 
-	//	player.isColliding = true;
-	//	enemy.isColliding	= true;
+  //	player.isColliding = true;
+  //	enemy.isColliding	= true;
 
-	//	enemy.isAlive = false;
-	//	LOG_VERBOSE("playerState: Normal->Dying");
-	//	context.playerState				= PlayerState::Dying;
-	//	context.playerDeathTimerS = PLAYER_DEATH_TIME_S;
-	//};
+  //	enemy.isAlive = false;
+  //	LOG_VERBOSE("playerState: Normal->Dying");
+  //	context.playerState				= PlayerState::Dying;
+  //	context.playerDeathTimerS = PLAYER_DEATH_TIME_S;
+  //};
 
-	//// Pass 1 - PlayerShots		-> Enemies
-	//for (size_t srcIdx = PLAYER_SHOTS_IDX; srcIdx < PLAYER_SHOTS_END; ++srcIdx)
-	//{
-	//	auto& srcEntity = m_context.entities[srcIdx];
-	//	collisionTestEntity(
-	//		srcEntity, ENEMIES_IDX, ENEMIES_END, onPlayerShotHitsEnemy);
-	//}
+  //// Pass 1 - PlayerShots		-> Enemies
+  // for (size_t srcIdx = PLAYER_SHOTS_IDX; srcIdx < PLAYER_SHOTS_END; ++srcIdx)
+  //{
+  //	auto& srcEntity = m_context.entities[srcIdx];
+  //	collisionTestEntity(
+  //		srcEntity, ENEMIES_IDX, ENEMIES_END, onPlayerShotHitsEnemy);
+  //}
 
-	//// Player is invulnerable, no more collision tests
-	//if (m_context.playerState == PlayerState::Reviving)
-	//{
-	//	return;
-	//}
+  //// Player is invulnerable, no more collision tests
+  // if (m_context.playerState == PlayerState::Reviving)
+  //{
+  //	return;
+  //}
 
-	//// Pass 2 - Player				-> Enemies
-	//collisionTestEntity(player, ENEMIES_IDX, ENEMIES_END, onPlayerHit);
+  //// Pass 2 - Player				-> Enemies
+  // collisionTestEntity(player, ENEMIES_IDX, ENEMIES_END, onPlayerHit);
 
-	//// Pass 3 - Player				-> EnemyShots
-	//collisionTestEntity(player, ENEMY_SHOTS_IDX, ENEMY_SHOTS_END, onPlayerHit);
+  //// Pass 3 - Player				-> EnemyShots
+  // collisionTestEntity(player, ENEMY_SHOTS_IDX, ENEMY_SHOTS_END, onPlayerHit);
 }
 
 //------------------------------------------------------------------------------
-//template <typename Func>
-//void
-//GameLogic::collisionTestEntity(
+// template <typename Func>
+// void
+// GameLogic::collisionTestEntity(
 //	Entity& entity,
 //	const size_t rangeStartIdx,
 //	const size_t rangeOnePastEndIdx,
@@ -239,7 +239,8 @@ GameLogic::performCollisionTests()
 //	auto& srcBound = entity.model->bound;
 //	auto srcCenter = entity.position + srcBound.Center;
 //
-//	for (size_t testIdx = rangeStartIdx; testIdx < rangeOnePastEndIdx; ++testIdx)
+//	for (size_t testIdx = rangeStartIdx; testIdx < rangeOnePastEndIdx;
+//++testIdx)
 //	{
 //		ASSERT(m_context.entities[testIdx].model);
 //		auto& testEntity = m_context.entities[testIdx];
@@ -262,8 +263,8 @@ GameLogic::performCollisionTests()
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-//void
-//GameLogic::renderPlayerEntity(Entity& entity)
+// void
+// GameLogic::renderPlayerEntity(Entity& entity)
 //{
 //	TRACE
 //	switch (m_context.playerState)
@@ -290,8 +291,8 @@ GameLogic::performCollisionTests()
 //}
 
 //------------------------------------------------------------------------------
-//void
-//GameLogic::renderEntityModel(Entity& entity, float orientation)
+// void
+// GameLogic::renderEntityModel(Entity& entity, float orientation)
 //{
 //	TRACE
 //	// TODO(James): Use <notnullable> to enforce assertion
@@ -312,8 +313,8 @@ GameLogic::performCollisionTests()
 //
 //#if 0
 //	// DEBUG BOUND
-//	Matrix boundWorld = Matrix::CreateTranslation(entity.position + boundCenter);
-//	boundWorld.m[0][0] *= modelData->bound.Radius;
+//	Matrix boundWorld = Matrix::CreateTranslation(entity.position +
+//boundCenter); 	boundWorld.m[0][0] *= modelData->bound.Radius;
 //	boundWorld.m[1][1] *= modelData->bound.Radius;
 //	boundWorld.m[2][2] *= modelData->bound.Radius;
 //
@@ -336,8 +337,8 @@ GameLogic::performCollisionTests()
 //}
 
 //------------------------------------------------------------------------------
-//void
-//GameLogic::renderEntityBound(Entity& entity)
+// void
+// GameLogic::renderEntityBound(Entity& entity)
 //{
 //	TRACE
 //	// TODO(James): Use <notnullable> to enforce assertion
@@ -367,8 +368,8 @@ GameLogic::performCollisionTests()
 //}
 
 //------------------------------------------------------------------------------
-//void
-//GameLogic::renderPlayerBoundary()
+// void
+// GameLogic::renderPlayerBoundary()
 //{
 //	TRACE
 //
@@ -402,76 +403,76 @@ GameLogic::performCollisionTests()
 void
 GameLogic::drawHUD()
 {
-	TRACE
-	if (m_hudDirty)
-	{
-		m_hudDirty = false;
-	}
+  TRACE
+  if (m_hudDirty)
+  {
+    m_hudDirty = false;
+  }
 }
 
 //------------------------------------------------------------------------------
 void
 GameLogic::updateUIDebugVariables()
 {
-	TRACE
-	float yPos = 0.0f;
+  TRACE
+  float yPos = 0.0f;
 
-	auto formatUI = [
-		&yPos,
-		font				= m_resources.fontMono8pt.get(),
-		screenWidth = m_context.screenWidth
-	](ui::Text & uiText, const wchar_t* fmt, float fVar)
-	{
-		uiText.font					= font;
-		uiText.text					= fmt::format(fmt, fVar);
-		XMVECTOR dimensions = uiText.font->MeasureString(uiText.text.c_str());
-		float width					= XMVectorGetX(dimensions);
-		float height				= ceil(XMVectorGetY(dimensions));
-		uiText.origin				= Vector2(width, 0.0f);
-		uiText.position.x		= screenWidth;
-		uiText.position.y		= yPos;
-		uiText.color				= Colors::MediumVioletRed;
-		yPos += height;
-	};
+  auto formatUI = [
+    &yPos,
+    font        = m_resources.fontMono8pt.get(),
+    screenWidth = m_context.screenWidth
+  ](ui::Text & uiText, const wchar_t* fmt, float fVar)
+  {
+    uiText.font         = font;
+    uiText.text         = fmt::format(fmt, fVar);
+    XMVECTOR dimensions = uiText.font->MeasureString(uiText.text.c_str());
+    float width         = XMVectorGetX(dimensions);
+    float height        = ceil(XMVectorGetY(dimensions));
+    uiText.origin       = Vector2(width, 0.0f);
+    uiText.position.x   = screenWidth;
+    uiText.position.y   = yPos;
+    uiText.color        = Colors::MediumVioletRed;
+    yPos += height;
+  };
 
-	const wchar_t* title = (m_context.isMidiConnected)
-													 ? L"MIDI CONTROLLER FOUND"
-													 : L"NO MIDI CONTROLLER FOUND";
-	formatUI(m_context.uiDebugVarsTitle, title, 0.0f);
+  const wchar_t* title = (m_context.isMidiConnected)
+                           ? L"MIDI CONTROLLER FOUND"
+                           : L"NO MIDI CONTROLLER FOUND";
+  formatUI(m_context.uiDebugVarsTitle, title, 0.0f);
 
-	formatUI(
-		m_context.uiCameraDist, L"Camera Dist: {}", m_context.cameraDistance);
-	formatUI(m_context.uiPlayerSpeed, L"Player Speed: {}", m_context.playerSpeed);
-	formatUI(
-		m_context.uiPlayerFriction,
-		L"Player Friction: {}",
-		m_context.playerFriction);
-	formatUI(
-		m_context.uiPlayerMaxVelocity,
-		L"Player Max Velocity: {}",
-		m_context.playerMaxVelocity);
-	formatUI(
-		m_context.uiPlayerMinVelocity,
-		L"Player Min Velocity: {}",
-		m_context.playerMinVelocity);
+  formatUI(
+    m_context.uiCameraDist, L"Camera Dist: {}", m_context.cameraDistance);
+  formatUI(m_context.uiPlayerSpeed, L"Player Speed: {}", m_context.playerSpeed);
+  formatUI(
+    m_context.uiPlayerFriction,
+    L"Player Friction: {}",
+    m_context.playerFriction);
+  formatUI(
+    m_context.uiPlayerMaxVelocity,
+    L"Player Max Velocity: {}",
+    m_context.playerMaxVelocity);
+  formatUI(
+    m_context.uiPlayerMinVelocity,
+    L"Player Min Velocity: {}",
+    m_context.playerMinVelocity);
 }
 
 //------------------------------------------------------------------------------
 void
 GameLogic::drawDebugVariables()
 {
-	TRACE
-	auto drawUI = [& spriteBatch = m_resources.m_spriteBatch](ui::Text & uiText)
-	{
-		uiText.draw(*spriteBatch);
-	};
+  TRACE
+  auto drawUI = [& spriteBatch = m_resources.m_spriteBatch](ui::Text & uiText)
+  {
+    uiText.draw(*spriteBatch);
+  };
 
-	drawUI(m_context.uiDebugVarsTitle);
-	drawUI(m_context.uiPlayerSpeed);
-	drawUI(m_context.uiPlayerFriction);
-	drawUI(m_context.uiPlayerMaxVelocity);
-	drawUI(m_context.uiPlayerMinVelocity);
-	drawUI(m_context.uiCameraDist);
+  drawUI(m_context.uiDebugVarsTitle);
+  drawUI(m_context.uiPlayerSpeed);
+  drawUI(m_context.uiPlayerFriction);
+  drawUI(m_context.uiPlayerMaxVelocity);
+  drawUI(m_context.uiPlayerMinVelocity);
+  drawUI(m_context.uiCameraDist);
 }
 
 //------------------------------------------------------------------------------

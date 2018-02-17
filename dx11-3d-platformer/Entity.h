@@ -4,8 +4,8 @@
 //------------------------------------------------------------------------------
 struct ModelData
 {
-	std::unique_ptr<DirectX::Model> model;
-	DirectX::BoundingSphere bound;
+  std::unique_ptr<DirectX::Model> model;
+  DirectX::BoundingSphere bound;
 };
 
 //------------------------------------------------------------------------------
@@ -34,12 +34,12 @@ static const size_t BALLISTIC_END = ENEMIES_IDX;
 //------------------------------------------------------------------------------
 struct Entity
 {
-	DirectX::SimpleMath::Vector3 position = {};
-	DirectX::SimpleMath::Vector3 velocity = {};
-	float birthTimeS											= 0.0f;
-	ModelData* model											= nullptr;
-	bool isColliding											= false;
-	bool isAlive													= false;
+  DirectX::SimpleMath::Vector3 position = {};
+  DirectX::SimpleMath::Vector3 velocity = {};
+  float birthTimeS                      = 0.0f;
+  ModelData* model                      = nullptr;
+  bool isColliding                      = false;
+  bool isAlive                          = false;
 };
 
 //------------------------------------------------------------------------------
