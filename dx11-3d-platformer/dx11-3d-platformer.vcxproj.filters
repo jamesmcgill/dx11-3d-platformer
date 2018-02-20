@@ -40,9 +40,6 @@
     <ClInclude Include="utils\KeyboardInputString.h">
       <Filter>utils</Filter>
     </ClInclude>
-    <ClInclude Include="utils\Log.h">
-      <Filter>utils</Filter>
-    </ClInclude>
     <ClInclude Include="json11\json11.hpp">
       <Filter>json11</Filter>
     </ClInclude>
@@ -58,6 +55,9 @@
     <ClInclude Include="GameLogic.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="utils\log.h">
+      <Filter>utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -73,9 +73,6 @@
       <Filter>fmt</Filter>
     </ClCompile>
     <ClCompile Include="utils\KeyboardInputString.cpp">
-      <Filter>utils</Filter>
-    </ClCompile>
-    <ClCompile Include="utils\Log.cpp">
       <Filter>utils</Filter>
     </ClCompile>
     <ClCompile Include="json11\json11.cpp">
